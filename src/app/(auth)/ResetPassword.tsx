@@ -25,7 +25,6 @@ const ResetPassword = () => {
   });
 
   const onSubmit = (data: ResetPassFormData) => {
-    console.log("Form Data:", data);
     router.push("/Successs");
     reset();
   };

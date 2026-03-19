@@ -80,8 +80,6 @@ export default function AddProductScreen() {
   const onSubmit = async (data: AddProductForm) => {
     // TODO: API call + ImageKit upload
 
-    console.log("on Submit are called ", data);
-    console.log(data, images);
     if (images.length === 0) {
       Alert.alert("Error", "At least one image required");
       return;
@@ -105,8 +103,6 @@ export default function AddProductScreen() {
         type: "image/jpeg",
       } as any);
     });
-
-    console.log("afeter adding all data", formData);
 
     mutate(formData, {
       onSuccess: () => {
@@ -137,7 +133,6 @@ export default function AddProductScreen() {
       const desc = await generateProductDescription(name);
       setValue("description", desc);
     } catch (err) {
-      console.log(err);
       Alert.alert("Error", "Description generation error");
     } finally {
       setGeneratingDesc(false);

@@ -43,7 +43,6 @@ const SingupScreen = () => {
 
   const setAuth = useAuthStore((state) => state.setAuth);
   const onSubmit = (data: SignUpFormData) => {
-    console.log("Form Data:", data);
     mutate(data, {
       onSuccess: (res) => {
         Toast.show({

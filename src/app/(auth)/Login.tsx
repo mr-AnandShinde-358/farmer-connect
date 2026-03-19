@@ -36,7 +36,6 @@ const LoginScreen = () => {
   const { mutate, isPending, isError, error } = useLoginUser();
 
   const onSubmit = (data: loginFormData) => {
-    console.log("Form Data:", data);
     mutate(data, {
       onSuccess: (res) => {
         Toast.show({

@@ -39,7 +39,6 @@ export default function ProfileScreen() {
   // screen mein:
   const { data: profile, isLoading } = useGetFarmerProfile();
   const { mutate, isPending } = useUpsertFarmerProfile();
-  if (profile) console.log(profile.address.pincode);
 
   const {
     control,

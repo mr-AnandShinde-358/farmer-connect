@@ -8,7 +8,7 @@ export const getProductDetail = async (productId:string) => {
 };
 
 export const updateProduct = async (productId:string, data:any) => {
-  console.log("api call check product id",productId)
+  
   const res = await apiClient.patch(`/products/${productId}`, data);
   return res.data.data;
 };

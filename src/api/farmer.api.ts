@@ -9,9 +9,9 @@ export const getFarmerProfile = async () => {
 
 export const upsertFarmerProfile = async (data: any) => {
     //create profile
-    console.log("calling upsert profile",data)
+    
   const res = await apiClient.post("/farmer/profile", data);
-  console.log("What is response ",res.data)
+
   return res.data.data;
 };
 
@@ -19,11 +19,11 @@ export const upsertFarmerProfile = async (data: any) => {
 // create product
 export const createProduct = async (formData: FormData) => {
 
-  console.log("now we sending api data",formData)
+
   const res = await apiClient.post("/products/create", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-  console.log('returen data create product api',res)
+
   return res.data.data;
 };
 

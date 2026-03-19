@@ -51,8 +51,7 @@ export default function RootLayout() {
   }
 
   if (!isHydrated) return null;
-  console.log("is Authenticated", isAuthenticated);
-  console.log("user is", user?.role);
+
   return (
     <GestureHandlerRootView style={styles.root}>
       <QueryClientProvider client={queryClient}>

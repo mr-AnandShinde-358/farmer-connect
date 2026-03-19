@@ -25,7 +25,6 @@ const ForgotPass = () => {
   });
 
   const onSubmit = (data: ForgotPassFormData) => {
-    console.log("Form Data:", data);
     router.push("/VerifyCode");
     reset();
   };

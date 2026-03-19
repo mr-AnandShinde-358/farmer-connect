@@ -50,11 +50,11 @@ export function useLogoutUser(){
     });
 
     async function performCleanup() {
-        console.log("🧹 [Logout] Cleaning up...");
+      
         
         // ✅ Step 2: Clear auth state (Zustand + MMKV)
         clearAuth();
-        console.log("✅ [Logout] Auth state cleared");
+       
         
         // ✅ Step 3: Reset navigation to login
         setTimeout(() => {

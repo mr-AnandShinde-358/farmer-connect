@@ -137,7 +137,6 @@ const EditProduct = () => {
       });
       return;
     }
-    console.log("before mutation call", productId);
 
     updateProduct(
       {

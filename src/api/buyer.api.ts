@@ -42,7 +42,7 @@ export const getBuyerProfile = async () => {
 };
 
 export const upsertBuyerProfile = async (data: any) => {
-    console.log("backed upser called")
+ 
   const res = await apiClient.post("/buyer/profile", data);
   return res.data.data;
 };

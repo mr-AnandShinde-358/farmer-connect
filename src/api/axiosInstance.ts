@@ -3,7 +3,7 @@ import Constants from "expo-constants";
 import { tokenStorage } from '../storage/mmkvStorage';
 // Base URL- environment variable se le
 const debuggerHost = Constants.expoConfig?.hostUri?.split(":")[0];
-console.log("id addrss",debuggerHost)
+
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL || `http://10.242.201.154:8000/api/v1`;
 
 

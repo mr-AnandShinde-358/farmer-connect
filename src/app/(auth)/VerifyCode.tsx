@@ -23,7 +23,6 @@ const VerifyCode = () => {
   });
 
   const onSubmit = (data: VerifyOtpData) => {
-    console.log("Form Data:", data);
     router.push("/ResetPassword");
     reset();
   };
