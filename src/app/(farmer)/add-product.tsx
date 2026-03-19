@@ -138,7 +138,7 @@ export default function AddProductScreen() {
       setValue("description", desc);
     } catch (err) {
       console.log(err);
-      Alert.alert("Error", "Description generate nahi ho saka");
+      Alert.alert("Error", "Description generation error");
     } finally {
       setGeneratingDesc(false);
     }
