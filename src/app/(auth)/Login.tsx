@@ -2,7 +2,7 @@ import { fonts } from "@/src/constants/fonts";
 import { imagePath } from "@/src/constants/imagePath";
 import { useLoginUser } from "@/src/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import {
   Image,
@@ -48,8 +48,12 @@ const LoginScreen = () => {
           refreshToken: res.refreshToken,
         });
       },
-      onError: (err) => {
-        console.log("Login error:", err);
+      onError: (err: any) => {
+        Toast.show({
+          type: "error",
+          text1: "❌ Login Failed",
+          text2: err?.response?.data?.messages || "Please try again",
+        });
       },
     });
 
@@ -64,17 +68,6 @@ const LoginScreen = () => {
   // if (isError) {
   //   return <Text>Error loading user</Text>;
   // }
-
-  useEffect(() => {
-    if (isError && error) {
-      const message = error?.response?.data?.messages || "Login failed";
-      Toast.show({
-        type: "error",
-        text1: "Login Error",
-        text2: message,
-      });
-    }
-  }, [isError, error]);
 
   return (
     <KeyboardAvoidingView
@@ -111,12 +104,12 @@ const LoginScreen = () => {
                 labelName={"Password"}
               />
 
-              <Link
+              {/* <Link
                 style={[styles.Forgot_Text, styles.Link]}
                 href="./ForgotPass"
               >
                 Forgot Password?
-              </Link>
+              </Link> */}
 
               <ButtonComp
                 title="Continue"

@@ -30,6 +30,7 @@ import {
   TextInput,
 } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 const CATEGORIES = ["GRAIN", "VEGETABLE", "FRUIT", "SPICE", "DAIRY", "OTHER"];
 const UNITS = ["kg", "quintal", "dozen", "litre", "piece", "ton"];
@@ -105,15 +106,22 @@ export default function AddProductScreen() {
     });
 
     mutate(formData, {
-      onSuccess: () => {
-        Alert.alert("Success", "Product added!");
+      onSuccess: (res) => {
+        Toast.show({
+          type: "success",
+          text1: "Success",
+          text2: res.data?.message ?? "Product added!",
+        });
         router.back();
       },
       onError: (err: any) => {
-        Alert.alert(
-          "Error",
-          err?.response?.data?.message ?? "Something went wrong",
-        );
+        Toast.show({
+          type: "error",
+          text1: "Error",
+          text2:
+            err?.response?.data?.message ??
+            "Something went wrong while adding product",
+        });
       },
     });
   };

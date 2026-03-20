@@ -24,9 +24,9 @@ export const authApi = {
   // logout-user
 
   logoutUser:async()=>{
-    console.log("caling logout")
+    
      const {data} = await apiClient.post(`/user/logout`)
-     console.log(data)
+    
     return data
   }
 

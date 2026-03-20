@@ -4,6 +4,7 @@ import {
 } from "@/src/hooks/useFarmerProfile";
 import { useAuthStore } from "@/src/store/auth.store";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   KeyboardAvoidingView,
@@ -39,21 +40,15 @@ export default function ProfileScreen() {
   // screen mein:
   const { data: profile, isLoading } = useGetFarmerProfile();
   const { mutate, isPending } = useUpsertFarmerProfile();
+  console.log("profile data is", profile);
 
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ProfileForm>({
     resolver: zodResolver(profileSchema),
-    values: {
-      fullName: profile?.fullName ?? "",
-      phoneNumber2: profile?.phoneNumber2 ?? "",
-      district: profile?.address?.district ?? "",
-      state: profile?.address?.state ?? "",
-      village: profile?.address?.village ?? "",
-      pincode: profile?.address?.pincode ?? "",
-    },
   });
 
   const onSubmit = (data: ProfileForm) => {
@@ -68,6 +63,19 @@ export default function ProfileScreen() {
       },
     });
   };
+
+  useEffect(() => {
+    if (profile) {
+      reset({
+        fullName: profile?.fullName ?? "",
+        phoneNumber2: profile?.phoneNumber2 ?? "",
+        district: profile?.address?.district ?? "",
+        state: profile?.address?.state ?? "",
+        village: profile?.address?.village ?? "",
+        pincode: profile?.address?.pincode?.toString() ?? "", // 🔥 IMPORTANT
+      });
+    }
+  }, [profile]);
 
   if (isLoading) return <Text style={styles.center}>Loading...</Text>;
 

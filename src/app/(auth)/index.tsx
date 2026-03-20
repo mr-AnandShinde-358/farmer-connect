@@ -53,8 +53,12 @@ const SingupScreen = () => {
         reset;
         router.navigate("/(auth)/Login");
       },
-      onError: (err) => {
-        console.log("register error:", err.message);
+      onError: (err: any) => {
+        Toast.show({
+          type: "error",
+          text1: "❌ Registration Failed",
+          text2: err?.response?.data?.messages || "Please try again",
+        });
       },
     });
   };

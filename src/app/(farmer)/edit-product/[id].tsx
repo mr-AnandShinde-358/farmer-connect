@@ -113,12 +113,18 @@ const EditProduct = () => {
         text: "Delete",
         onPress: () => {
           deleteProductMutation(productId, {
-            onSuccess: () => {
+            onSuccess: (res) => {
               Toast.show({
                 type: "success",
-                text1: "Product deleted!",
+                text1: res.data?.message ?? "Product deleted!",
               });
               router.back();
+            },
+            onError: () => {
+              Toast.show({
+                type: "error",
+                text1: "Problem in product deleting! Please try again",
+              });
             },
           });
         },
@@ -148,13 +154,20 @@ const EditProduct = () => {
         },
       },
       {
-        onSuccess: () => {
+        onSuccess: (res) => {
           Toast.show({
             type: "success",
             text1: "Success!",
-            text2: "Product updated!",
+            text2: res.data?.message ?? "Product updated!",
           });
           router.back();
+        },
+        onError: () => {
+          Toast.show({
+            type: "error",
+            text1: "Error",
+            text2: "Problem Product updateing",
+          });
         },
       },
     );

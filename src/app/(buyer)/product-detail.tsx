@@ -3,14 +3,13 @@ import { getProductImageUrl } from "@/src/utils/imagekit";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import {
-  Alert,
   Dimensions,
   Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   StyleSheet,
-  View,
+  View
 } from "react-native";
 import {
   Button,
@@ -22,6 +21,7 @@ import {
 } from "react-native-paper";
 import Carousel from "react-native-reanimated-carousel";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -51,15 +51,23 @@ export default function ProductDetailScreen() {
     placeOrder(
       { productId: id, quantity: qty, ...(note ? { note } : {}) },
       {
-        onSuccess: () => {
-          Alert.alert("Success", "Order placed!");
+        onSuccess: (res) => {
+          Toast.show({
+            type: "success",
+            text1: "Success",
+            text2: res.data?.message ?? "Order placed!",
+          });
+
           router.back();
         },
         onError: (err: any) => {
-          Alert.alert(
-            "Error",
-            err?.response?.data?.message ?? "Something went wrong",
-          );
+          Toast.show({
+            type: "success",
+            text1: "Success",
+            text2:
+              err.response.data?.message ??
+              "Something went wrong While Placing Order",
+          });
         },
       },
     );
